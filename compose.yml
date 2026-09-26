@@ -1,6 +1,6 @@
 services:
   storage:
-    image: minio/minio:latest
+    image: quay.io/minio/minio:lates
     command: server /data
     restart: always
     expose: 
@@ -18,7 +18,7 @@ services:
       retries: 3
 
   createbuckets:
-    image: minio/mc
+    image: quay.io/minio/mc
     depends_on:
       - storage
     restart: on-failure
@@ -48,9 +48,9 @@ services:
   security:
     build: ./security
     expose: 
-      - 3000
+      - 8080
     environment:
-      PORT: 3000
+      PORT: 8080
 
   gateway:
     image: nginx:alpine
